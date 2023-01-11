@@ -4,27 +4,27 @@ node(){
     }
         
     stage('Package Build') {
-        sh "tar -zcvf backend.tar.gz backend_api/"
+        sh "tar -zcvf bundle.tar.gz backend_api/"
     }
 
     stage('Artifacts Creation') {
-        fingerprint 'backend.tar.gz'
-        archiveArtifacts 'backend.tar.gz'
+        fingerprint 'bundle.tar.gz'
+        archiveArtifacts 'bundle.tar.gz'
         echo "Artifacts created"
     }
 
     stage('Stash changes') {
-        stash allowEmpty: true, includes: 'backend.tar.gz', name: 'buildArtifacts_backend'
+        stash allowEmpty: true, includes: 'bundle.tar.gz', name: 'buildArtifacts'
     }
 }
 
 node('awsnode') {
     echo 'Unstash'
-    unstash 'buildArtifacts_backend'
+    unstash 'buildArtifacts'
     echo 'Artifacts copied backend'
 
     echo 'Copy'
-    sh "yes | sudo cp -R backend.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf backend.tar.gz"
+    sh "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
     echo 'Copy completed for backend'
 }
 
