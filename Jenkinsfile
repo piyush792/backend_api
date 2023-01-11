@@ -1,5 +1,5 @@
 pipeline{
-    agent {label: 'slave_api'}
+    agent {label 'slave_api'}
     environment{
         staging_server="3.111.33.73"
     }
