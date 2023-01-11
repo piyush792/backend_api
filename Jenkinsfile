@@ -1,10 +1,11 @@
 pipeline{
     agent any
     environment{
-        staging_server="13.234.21.150"
+        staging_server="3.111.33.73"
     }
     stages{
         stage('Deploy to Remote'){
+            // agent {label 'slave_api'}
             steps{
                 // sh '''
                 //     for fileName in `find ${WORKSPACE} -type f -mmin -10 | grep -v ".git" | grep -v "Jenkinsfile"`
