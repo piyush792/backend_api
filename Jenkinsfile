@@ -13,7 +13,7 @@ pipeline{
                 //         scp -r ${WORKSPACE}${fil} root@${staging_server}:/var/www/html/backend_api${fil}
                 //     done
                 // '''
-                sh 'scp ${WORKSPACE}/* ec2-user@${staging_server}:/var/www/html/backend_api/'
+                sh 'scp ${WORKSPACE}/* root@${staging_server}:/var/www/html/backend_api/'
             }
         }
     }
