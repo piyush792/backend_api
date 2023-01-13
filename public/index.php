@@ -7,6 +7,7 @@ define('LARAVEL_START', microtime(true));
 
 /*
 no changes
+do something
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
 |--------------------------------------------------------------------------
